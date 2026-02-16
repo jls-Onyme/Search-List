@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Convertisseur</title>
+        <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+        <style>
+            body {
+                background-color: #1e1e1e;
+                color: #eeeeee;
+                font-family: Arial, sans-serif;
+            }
+
+            input {
+                background-color: #333;
+                color: white;
+                border: 1px solid #666;
+                padding: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Fichier -->
+        <input type="file" id="fichierExcel" accept=".xlsx">
+
+        <script>
+            document.getElementById("fichierExcel")
+                .addEventListener("change", function(event){
+                    const fichier = event.target.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = function(evt){
+
+                        const data = new Uint8Array(evt.target.result);
+                        const workbook = XLSX.read(data, {type: "array"});
+
+                        let resultat = {};
+
+                        for (let nom of workbook.SheetNames){
+                            const feuille = workbook.Sheets[nom];
+                            resultat[nom] = XLSX.utils.sheet_to_json(feuille);
+                        }
+
+                        const blob = new Blob([JSON.stringify(resultat, null, 2)],
+                            { type: "application/json"}
+                        );
+
+                        const lien = document.createElement("a");
+                        lien.href = URL.createObjectURL(blob);
+                        lien.download = "Liste.json";
+                        lien.click();
+                    };
+
+                    reader.readAsArrayBuffer(fichier);
+            });
+        </script>
+    </body>
+</html>
