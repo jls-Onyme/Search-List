@@ -118,7 +118,7 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 function afficherResultats()
 {
     console.log("Affichage Resultat !")
-    // querySelector("#monTableau tbody") -> selectionne le <tboody> dans monTableau
+
     const tbody = document.querySelector("#monTableau tbody");
     if (!bases)
     {
@@ -149,7 +149,11 @@ function afficherResultats()
     {
         // Boucle des Onglets
         Object.keys(bases).forEach(function (nomOnglet) {
-            Array.isArray(bases[nomOnglet]);
+            if (!Array.isArray(bases[nomOnglet])) return;
+            console.log("Is array passe");
+
+            let separator = true; // Booléen pour nom de l'onglet
+        
             // Boucle des lignes
             bases[nomOnglet].forEach(function(ligne, index){
                 // Recherche simple
@@ -158,6 +162,22 @@ function afficherResultats()
                     || String(ligne.Nom || "").toLowerCase().trim().includes(recherche)
                     || String(ligne.Prénom || "").toLowerCase().trim().includes(recherche))
                     {
+                        if(separator === true )
+                        {
+                            // Ligne séparatrice avec nom de l'Onglet
+                            const trSeparator = document.createElement("tr");
+                            trSeparator.classList.add("ligne-separatrice");
+                            
+                            const td = document.createElement("td");
+                            //td.colSpan = 5;
+                            td.colSpan = document.querySelectorAll("#monTableau thead th").length;
+                            td.textContent = "- " + nomOnglet +" -";
+                            trSeparator.appendChild(td);
+                            tbody.appendChild(trSeparator);
+                            separator = false;
+                        }
+
+
                         const tr = creerLigneTableau(ligne, index, nomOnglet);
                         tbody.appendChild(tr);
                     }
@@ -178,56 +198,6 @@ function afficherResultats()
     }
 }
 
-
-// ====================================================================== //
-/* ===== Fonction Trier et Afficher les Lignes ========================== */
-// ====================================================================== //
-/*
-function trierAfficherLigne(ligne, index, nomOnglet, tbody)
-{
-    //console.log("Affichage ligne !")
-    const recherche = document.getElementById("search").value.toLowerCase();
-    
-    console.log("nomOnglet :", nomOnglet);
-
-    //On filtre d'abort les resultats
-    const filtres = bases[nomOnglet].filter(ligne =>
-            String(ligne.Etat || "").toLowerCase().trim().includes(recherche)
-            || String(ligne.Num || "").toLowerCase().trim().includes(recherche)
-            || String(ligne.Nom || "").toLowerCase().trim().includes(recherche)
-            || String(ligne.Prénom || "").toLowerCase().trim().includes(recherche));
-
-    // Si aucun résultat
-    if (filtres.length === 0)
-    {
-        //const zone = document.getElementById("rienTrouve");
-        //zone.textContent = "Aucun resultat trouvé !";
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.colSpan = 5;
-        td.textContent = "Aucun résultat !";
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-        return;
-    }
-
-    // Afficher les lignes
-    filtres.forEach((ligne, index) =>{
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${ligne.Etat || ""}</td>
-            <td>${ligne.Num || ""}</td>
-            <td>${ligne.Nom || ""}</td>
-            <td>${ligne.Prénom || ""}</td>
-            <td>
-                <button onclick="ModifierLigne(${ligne, index})">Modifier</button>
-                <button onclick="SupprimerLigne(${ligne, index})">Supprimer</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
-}
-*/
 
 // ====================================================================== //
 /* ===== Fonction Modiiffier une ligne ================================== */
@@ -265,27 +235,6 @@ function modifierLigne(nomOnglet, index)
 }
 
 
-// ====================================================================== //
-/* ===== Fonction Valider la ligne modiffier ============================ */
-// ====================================================================== //
-/*
-function validerLigne(index)
-{
-    const newEtat = document.getElementById(`etat_${index}`).value;
-    console.log( "newEtat :" , newEtat);
-    const newNum = document.getElementById(`num_${index}`).value;
-    console.log( "newNum :" , newNum);
-    const newNom = document.getElementById(`nom_${index}`).value;
-    const newPrenom = document.getElementById(`prenom_${index}`).value;
-
-    bases[selection][index].etat = newEtat;
-    bases[selection][index].num = newNum;
-    bases[selection][index].nom = newNom;
-    bases[selection][index].prenom = newPrenom;
-
-    afficherResultats(); // Reconstruit le tableau
-}
-*/
 // ====================================================================== //
 /* ===== Fonction Ajouter une ligne ===================================== */
 // ====================================================================== //
