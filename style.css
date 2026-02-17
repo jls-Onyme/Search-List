@@ -1,117 +1,153 @@
 /* style.css */
 
-/*Fond sombre pour reposer les yeux */
+/* ==================================================================== */
+/* ===== Style par defaut ============================================= */
+/* ==================================================================== */
+
+/*** Fond sombre pour reposer les yeux **********************************/
 body {
-    background-color: #1e1e1e;
-    color: #eeeeee;
-    font-family: Arial, sans-serif;
-    padding: 20px;
+	background-color: #1e1e1e;	/* Arrière plan sombre */
+	color: #eeeeee;			/* texte claire */
+	font-family: Arial, sans-serif;
+	padding: 20px;
 }
 
 input, select {
-    background-color: #333;
-    color: white;
-    border: 1px solid #666;
-    padding: 5px;
+	background-color: #333;
+	color: white;
+	border: 1px solid #666;
+	padding: 5px;
 }
 
-/* Tableau enstyle lisible */
+/*** Tableau classique PC ***********************************************/
 table {
-    width: 100%;
-    border-collapse: collapse; /* Supprime les double bordure */
-    margin-top: 10px;
+	width: 100%;				/* Prend toute la largeur de la page */
+	border-collapse: collapse;	/* Supprime les doubles bordures */
+	margin-top: 10px;
 }
 
-/* Cellule du tableau */
-td {
-    padding: 6px;
-    border: 1px solid #666;
-    text-align: left;
-}
-
-/* En-tête de tableau */
+/*** En-tête de tableau *************************************************/
 th {
-    background-color: #444;
-    padding: 6px;
-    border: 1px solid #666;
-    text-align: left;
+	background-color: #444;
+	padding: 6px;				/* espace à l'interrieur des cellules */
+	border: 1px solid #666;	/* Bordure de cellule */
+	text-align: left;			/* Texte aligné à gauche */
+	vertical-align: middle;		/* alignement vertical centré */
 }
 
-/*Lignes paires plus clair our plus de lisibilité */
+/*** En-tête de tableau *************************************************/
+thead {
+	background-color: #444;	/* Fond sombre pour entête */
+	color: white;				/* Taxte blanc */
+}
+
+/*** Cellule du tableau *************************************************/
+td {
+	padding: 6px;				/* espace à l'interrieur des cellules */
+	border: 1px solid #666;	/* Bordure de cellule */
+	text-align: left;			/* Texte aligné à gauche */
+	vertical-align: middle;		/* alignement vertical centré */
+}
+
+/*** Lignes paires plus clair our plus de lisibilité ********************/
 tbody tr:nth-child(even) {
-    background-color: #2a2a2a; 
+	background-color: #2a2a2a; 
 }
 
-/* Ligne séparatrice avec nomOnglet */
+/*** Ligne séparatrice avec nomOnglet ***********************************/
 .ligne-separatrice td {
-    font-weight: bold;
-    background-color: #222;
-    color: white;
-    text-align: left;
-    padding-left: 15%;
+	font-weight: bold;
+	background-color: #0a0a0a;
+	color: rgb(203, 199, 199);
+	text-align: left;
+	padding-left: 15%;
 }
 
-/* Bouton Modifier / Valider */
+/*** Bouton Modifier / Valider ******************************************/
 button {
-    background-color: #444;
-    color: #f0f0f0;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-right: 5px;
+	margin-right: 5px;			/* Petit espace entre les boutons */
+	background-color: #444;
+	color: #f0f0f0;				/* Texte couleur blanc */
+	border-radius: 3px;			/* Angle arrondie */
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
 }
 
 button:hover {
-    background-color: #555;
+	background-color: #555;
 }
 
 #btnAjouter, #btnTelecharger {
-    display: none; /* Caché par defaut */
+	display: none;				/* Caché par defaut */
 }
 
-@media (max-width: 768px) { /* Condition : taille jusqu'a 768px*/
-    table thead {
-        display: none; 
-    }
 
-    table, tbody, tr, td {
-        display: block;
-        width: 100%; /* Prend toutes la largeur */
-    }
+/* ==================================================================== */
+/* ===== Style Vertical =============================================== */
+/* ==================================================================== */
 
-    tr {
-        margin-bottom: 1rem; /* Magin: espace autour, bottom: en dessous */
-        border: 1px solid #ccc;
-        border-radius: 8px; /* Arrondi les bord des coins */
-        padding: 15px; /* padding: espace interieur entre contenu et bordure */
-        background: #1e1e1e;
-        box-sizing: border-box;
-    }
+/* Style pour écran < ou =  768 (smartphone / tablette) */
+@media (max-width: 900px) {
+	/*** On cache l'entête **********************************************/
+	table thead {
+		display: none; 
+	}
 
-    td {
-        display: block;
-        width: 100%; /* Prends toutes la largeur de la carte */
-        box-sizing: border-box; /* Inclut le padding dans la largeur */
-        text-align: left;
-        position: relative; /* Element ref a ceux absolut */
-        padding-left: 35%; /* Décalle contenu de 35% de la case sur la gauche */
-        padding-right: 10px;
-        margin-bottom: 6px;
-        /* min-height: 24px; */
-    }
+	table, tbody {
+		display: block;
+		width: 100%; /* Prend toutes la largeur */
+	}
 
-    td::before { /* ajoute contenu avant le contenu reel */
-        content: attr(data-label); /* attr(): récuperer la valeur d'un attribut HTML */
-        position: absolute; /* se positionne par rapport aux element relatifs */
-        left: 10px;
-        width: 40%;
-        font-weight: bold;
-        text-align: left;
-        box-sizing: border-box;
-    }
+	/*** Chaque ligne devient une "carte" verticale *********************/
+	tr {
+		display: block;			/* chaque ligne = block séparé */
+		margin-bottom: 1rem; 	/* Magin: espace autour, bottom: en dessous */
+		border: 1px solid #ccc;	/*Bordure de la carte */
+		border-radius: 8px;		/* Arrondi les bord des coins */
+		padding: 15px;			/* padding: espace interieur entre contenu et bordure */
+		background: #1e1e1e;	/* Couleur sombre différente pour carte */
+		box-sizing: border-box;	/* Inclut padding/border dans la largeur */
+	}
 
-    td:empty::after { /* empty: si c'est vide appliquer ce qui suit */
-        content: "-";
-        color: #777;
-    }
+	td {
+		display: block;			/* chaque cellule = block séparé */
+		width: 100%;			/* Prends toutes la largeur de la carte */
+		padding-left: 35%;		/* Décalle contenu de 35% de la case sur la gauche */
+		padding-right: 10px;
+		margin-bottom: 6px;		/* espace entre les lignes internes */
+		text-align: left;
+		position: relative;		/* Element ref à ceux absolu */
+		box-sizing: border-box;	/* Inclut le padding dans la largeur */
+	}
+
+	/*** On affiche le nom de la colonne à gauche via le data-label *****/
+	td::before { /* Ajoute contenu avant le contenu reel */
+		content: attr(data-label);	/* attr(): récuperer la valeur d'un attribut HTML */
+		position: absolute;		/* Se positionne par rapport aux elements relatifs */
+		left: 10px;				/* Décale ver la gauche */
+		top: 50%;				/* Centre verticalement */
+		transform: translateY(-50%);	/* ajustement exact pour centrer */
+		font-weight: bold;		/* Label en gras */
+		width: 40%;				/* Largeur maximal du label */
+		white-space: nowrap;	/* Label sur une seule ligne */
+		overflow: hidden;		/* Coupe si trop long */
+		text-overflow: ellipsis;	/* ajoute ... si dépassement */
+		text-align: left;
+		box-sizing: border-box;
+	}
+
+	/*** empty: si c'est vide appliquer ce qui suit *********************/
+	td:empty::after {
+		/* content: "-";		/* espace insécable pour garder la cellule */
+		content: "-";
+		color: #777;
+		min-height: 24px;		/* empêche la cellule de s'écraser si vide */
+	}
+
+	/*** Style bouton dans les cartes ***********************************/
+	td button {
+		width: auto;			/* prend juste la taille du texte */
+		margin-top: 4px;		/* Petite espace au-dessus pour lisibilité */
+	}
 }
