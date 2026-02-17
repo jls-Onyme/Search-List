@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Imprime-BAL Manuel</title>
-        <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-        <!-- Lien vers fichier style.css (remplace <style></style>)-->
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h2>Pour ceux qui n'écrivent pas leur N° d'appart'</h2>
+	<head>
+		<meta charset="UTF-8">
+		<title>Imprime-BAL Manuel</title>
+		<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+		<!-- Permet aux medi queries de fonctionner correctement sur mobile -->
+		<meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
-        <!--Bouton pour charger ton fichier JSON-->
-        <input type="file" id="chargerJson" accept=".json"
-            style="display: inline-block;">
-        
-        <!-- Menu déroulant -->
-        <label for="choixOnglet">Adresse :</label>
-        <select id="choixOnglet">
-            <option value="tous">Tous les onglets</option>
-        </select>
+		<!-- Lien vers fichier style.css (remplace <style></style>)-->
+		<link rel="stylesheet" href="style.css?v=1"> <!-- v=1 est un cache-buster, force le chargement -->
+	</head>
+	<body>
+		<h2>Pour ceux qui n'écrivent pas leur N° d'appart'</h2>
 
-        <!-- Bouton pour ajouter et télécharger le JSON -->
-        <button id="btnAjouter">Ajouter une Ligne</button>
-        <button id="btnTelecharger">TéléchargerJSON</button>
+		<!--Bouton pour charger ton fichier JSON-->
+		<input type="file" id="chargerJson" accept=".json"
+			style="display: inline-block;">
+		
+		<!-- Menu déroulant -->
+		<label for="choixOnglet">Adresse :</label>
+		<select id="choixOnglet">
+			<option value="tous">Tous les onglets</option>
+		</select>
 
-        <!-- Saut de ligne -->
-        <br><br>
-        
-        <!-- Barre de recherche -->
-        <input type="text" id="search" placeholder="Tape ici !">
-        
-        <!-- Zone où on affichera le texte -->
-        <div id="rienTrouve"></div>
-        <div id="onglets"></div>
+		<!-- Saut de ligne -->
+		<br><br>
 
-        <!-- Saut de ligne -->
-        <br><br>
+		<!-- Bouton pour ajouter et télécharger le JSON -->
+		<button id="btnAjouter">Ajouter une Ligne</button>
+		<button id="btnTelecharger">TéléchargerJSON</button>
 
-        <!-- Tableau pour résultat -->
-        <table bordeer=1 id="monTableau" style="display:none;">
-            <thead>
-                <tr id="enteteTableau">
-                    <th>Etat</th>
-                    <th>N°</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="resultats">
-                <!-- Ligne générées en JS -->
-            </tbody>
-        </table>
+		<!-- Saut de ligne -->
+		<br><br>
+		
+		<!-- Barre de recherche -->
+		<input type="text" id="search" placeholder="Tape ici !">
+		
+		<!-- Zone où on affichera le texte -->
+		<div id="rienTrouve"></div>
+		<div id="onglets"></div>
 
-        <!-- Programme dans script.js -->
-        <script src="script.js"></script>
-    </body>
+		<!-- Saut de ligne -->
+		<br><br>
+
+		<!-- Tableau pour résultat -->
+		<table bordeer=1 id="monTableau" style="display:none;">
+			<thead>
+				<tr id="enteteTableau">
+					<th>Etat</th>
+					<th>N°</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody id="resultats">
+				<!-- Ligne générées en JS -->
+			</tbody>
+		</table>
+
+		<!-- Programme dans script.js, defer: script execute apres chargement HTML-->
+		<script src="script.js?v=1" defer></script>
+	</body>
 </html>
