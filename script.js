@@ -31,6 +31,8 @@ document.getElementById("chargerJson")
 
             // Rendre le bouton Telecharger vivible
             document.getElementById("btnTelecharger").style.display = "inline-block";
+            // Rendre l'input fichier invisible
+            event.target.style.display = "none";
         }
         catch (err)
         {
@@ -75,21 +77,38 @@ function remplirMenu()
 // ====================================================================== //
 function creerLigneTableau(ligne, index, nomFeuille) {
     const tr = document.createElement("tr");
+
+    // ===== Etat =====
+    const tdEtat = document.createElement("td");
+    tdEtat.textContent = ligne.Etat;
+    tdEtat.setAttribute("data-label", "Etat");
+    tr.appendChild(tdEtat);
+
+    // ===== N° =====
+    const tdNum = document.createElement("td");
+    tdNum.textContent = ligne.Num;
+    tdNum.setAttribute("data-label", "Num");
+    tr.appendChild(tdNum);
+
+    // ===== Nom =====
+    const tdNom = document.createElement("td");
+    tdNom.textContent = ligne.Nom;
+    tdNom.setAttribute("data-label", "Nom");
+    tr.appendChild(tdNom);
+
+    // ===== Prénom =====
+    const tdPrenom = document.createElement("td");
+    tdPrenom.textContent = ligne.Prénom;
+    tdPrenom.setAttribute("data-label", "Prénom");
+    tr.appendChild(tdPrenom);
     
-    // Affichage des colonnes
-    tr.innerHTML = `
-        <td>${ligne.Etat || ""}</td>
-        <td>${ligne.Num || ""}</td>
-        <td>${ligne.Nom || ""}</td>
-        <td>${ligne.Prénom || ""}</td>
-        `;
-    
+    // ===== Action =====
     const tdActions = document.createElement("td");
+    tdActions.setAttribute("data-label", "Action");
     if (selection !== "tous"){
         // Bouton Modifier
         const btnModif = document.createElement("button");
         btnModif.textContent = "Modifier";
-
         btnModif.addEventListener("click", function() {
             modifierLigne(nomFeuille, index);
         });
@@ -98,7 +117,6 @@ function creerLigneTableau(ligne, index, nomFeuille) {
         // Bouton Supprimer
         const btnSupp = document.createElement("button");
         btnSupp.textContent = "Supprimer";
-
         btnSupp.addEventListener("click", function() {
             supprimerLigne(nomFeuille, index);
         });
@@ -169,7 +187,6 @@ function afficherResultats()
                             trSeparator.classList.add("ligne-separatrice");
                             
                             const td = document.createElement("td");
-                            //td.colSpan = 5;
                             td.colSpan = document.querySelectorAll("#monTableau thead th").length;
                             td.textContent = "- " + nomOnglet +" -";
                             trSeparator.appendChild(td);
