@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Imprime-BAL Manuel</title>
 		<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-		<!-- Permet aux medi queries de fonctionner correctement sur mobile -->
+		<!-- Permet aux media queries de fonctionner correctement sur mobile -->
 		<meta name="viewport" content="widht=device-width, initial-scale=1.0">
 
 		<!-- Lien vers fichier style.css (remplace <style></style>)-->
@@ -14,7 +14,7 @@
 		<h2>Pour ceux qui n'écrivent pas leur N° d'appart'</h2>
 
 		<!--Bouton pour charger ton fichier JSON-->
-		<input type="file" id="chargerJson" accept=".json"
+		<input type="file" id="chargerFile" accept=".xlsx, .json"
 			style="display: inline-block;">
 		
 		<!-- Menu déroulant -->
@@ -60,6 +60,9 @@
 		</table>
 
 		<!-- Programme dans script.js, defer: script execute apres chargement HTML-->
-		<script src="script.js?v=1" defer></script>
+		<script src="affichageTableau.js?v=1" defer></script>
+		<script src="gestionLignes.js?v=1" defer></script>
+		<script src="lectureFichier.js?v=1" defer></script>
+		<script src="main.js?v=1" defer></script>
 	</body>
 </html>
