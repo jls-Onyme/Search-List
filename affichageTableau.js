@@ -80,6 +80,7 @@ function afficherResultats()
 	const table = document.getElementById("monTableau");
 	
 	// Si Champ de Recherche est vide
+	/*
 	console.log("Recherche", recherche);
 	if (recherche.trim() === "")
 	{
@@ -88,11 +89,19 @@ function afficherResultats()
 		return ;
 	}
 	table.style.display = "table";
-
+	*/
 	console.log("selection", selection);
 
 	if (selection === "tous")
 	{
+		console.log("Recherche", recherche);
+		if (recherche.trim() === "")
+		{
+			console.log("Recherche vide.", recherche);
+			table.style.display = "none";
+			return ;
+		}
+		table.style.display = "table";
 		// Boucle des Onglets
 		Object.keys(bases).forEach(function (nomOnglet) {
 			if (!Array.isArray(bases[nomOnglet])) return;
@@ -128,8 +137,21 @@ function afficherResultats()
 					}
 			});
 		})
-	} else {
-		bases[selection].forEach(function(ligne, index){
+	}
+	else
+	{
+		console.log("Recherche", recherche);
+		table.style.display = "table";
+		if (recherche.trim() === "")
+		{
+			bases[selection].forEach(function(ligne, index){
+				const tr = creerLigneTableau(ligne, index, selection);
+				tbody.appendChild(tr);
+		})
+		}
+		else
+		{
+			bases[selection].forEach(function(ligne, index){
 			if (String(ligne.Etat || "").toLowerCase().trim().includes(recherche)
 				|| String(ligne.BAL || "").toLowerCase().trim().includes(recherche)
 				|| String(ligne.Nom || "").toLowerCase().trim().includes(recherche)
@@ -138,7 +160,7 @@ function afficherResultats()
 					const tr = creerLigneTableau(ligne, index, selection);
 					tbody.appendChild(tr);
 				}
-		})
-		//document.getElementById("btnAjouter").style.display = "inline-block";
+			})
+		}
 	}
 }
