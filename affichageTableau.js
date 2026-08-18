@@ -26,7 +26,7 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 	if (classe) {
 		spanEtat.classList.add(classe);
 	}
-	tdEtat.appenChild(spanEtat);
+	tdEtat.appendChild(spanEtat);
 	tr.appendChild(tdEtat);
 
 	// ===== N° =====
