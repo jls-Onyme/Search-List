@@ -20,8 +20,6 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 	tdEtat.textContent = ligne.Etat;
 	tdEtat.setAttribute("data-label", "Etat");
 	const classe = couleurEtat[ligne.Etat];
-	console.log("Etat :", ligne.Etat);
-	console.log("Classe :", ligne.classe);
 	if (classe) {
 		tdEtat.classList.add(classe);
 	}
