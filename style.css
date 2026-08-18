@@ -82,6 +82,16 @@ button:hover {
 	display: none;				/* Caché par defaut */
 }
 
+/*** Couleur ETAT *******************************************************/
+.etat-red {
+	color: red;
+}
+.etat-green {
+	color: green;
+}
+.etat-grey {
+	color: gray;
+}
 
 /* ==================================================================== */
 /* ===== Style Vertical =============================================== */
@@ -151,3 +161,9 @@ button:hover {
 		margin-top: 4px;		/* Petite espace au-dessus pour lisibilité */
 	}
 }
+
+
+
+
+
+
