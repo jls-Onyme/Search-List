@@ -6,7 +6,8 @@ const couleurEtat = {
 	"TEMP": "etat-green",
 	"NPAI": "etat-grey",
 	"NEW": "etat-rainbow",
-	"NEW NPAI": "etat-rainbow"
+	"NEW NPAI": "etat-rainbow",
+	"NEW NPAI ": "etat-rainbow"
 };
 
 
