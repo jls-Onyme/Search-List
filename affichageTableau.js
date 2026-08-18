@@ -18,12 +18,15 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 
 	// ===== Etat =====
 	const tdEtat = document.createElement("td");
-	tdEtat.textContent = ligne.Etat;
+	// tdEtat.textContent = ligne.Etat;
 	tdEtat.setAttribute("data-label", "Etat");
+	const spanEtat = document.createElement("span");
+	spanEtat.textContent = ligne.Etat;
 	const classe = couleurEtat[ligne.Etat];
 	if (classe) {
-		tdEtat.classList.add(classe);
+		spanEtat.classList.add(classe);
 	}
+	tdEtat.appenChild(spanEtat);
 	tr.appendChild(tdEtat);
 
 	// ===== N° =====
