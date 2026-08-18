@@ -92,6 +92,20 @@ button:hover {
 .etat-grey {
 	color: gray;
 }
+.etat-rainbow {
+	background: linear-gradient(
+		90deg,
+		red,
+		orange,
+		yellow,
+		green,
+		blue,
+		violet
+		);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
 
 /* ==================================================================== */
 /* ===== Style Vertical =============================================== */
