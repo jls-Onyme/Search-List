@@ -4,7 +4,7 @@
 const couleurEtat = {
 	"DEF": "etat-red",
 	"TEMP": "etat-green",
-	"NPAI": "etat-gray",
+	"NPAI": "etat-grey",
 	"NEW": "etat-rainbow"
 };
 
@@ -21,7 +21,7 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 	tdEtat.setAttribute("data-label", "Etat");
 	const classe = couleurEtat[ligne.Etat];
 	if (classe) {
-		tdEtat.classList.add(classe)
+		tdEtat.classList.add(classe);
 	}
 	tr.appendChild(tdEtat);
 
