@@ -1,5 +1,14 @@
 /* affichageTableau.js */
 
+/* ===== Couleur pour les ETATs =============================== */
+const couleurEtat = {
+	"DEF": "etat-red",
+	"TEMP": "etat-green",
+	"NPAI": "etat-gray",
+	"NEW": "etat-rainbow"
+};
+
+
 // ====================================================================== //
 /* ===== Fonction Creer une ligne Tableau =============================== */
 // ====================================================================== //
@@ -10,6 +19,10 @@ function creerLigneTableau(ligne, index, nomFeuille) {
 	const tdEtat = document.createElement("td");
 	tdEtat.textContent = ligne.Etat;
 	tdEtat.setAttribute("data-label", "Etat");
+	const classe = couleurEtat[ligne.Etat];
+	if (classe) {
+		tdEtat.classList.add(classe)
+	}
 	tr.appendChild(tdEtat);
 
 	// ===== N° =====
