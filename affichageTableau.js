@@ -2,8 +2,8 @@
 
 /* ===== Couleur pour les ETATs =============================== */
 const couleurEtat = {
-	"DEF": "etat-red",
-	"TEMP": "etat-green",
+	"DEF": "etat-green",
+	"TEMP": "etat-red",
 	"NPAI": "etat-grey",
 	"NEW": "etat-rainbow",
 	"NEW NPAI": "etat-rainbow",
