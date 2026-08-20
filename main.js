@@ -47,7 +47,8 @@ document.getElementById("btnTelecharger").addEventListener("click", function()
 		maintenant.getFullYear() + "-" +
 		String(maintenant.getMonth() + 1).padStart(2, "O") + "-" +
 		String(maintenant.getDate()).padStart(2, "O");
-	const nomFichier = `MAJ_List_${date}.json`;
+	const prefixe = fichier.name.substring(0, 4);
+	const nomFichier = `MAJ_${prefixe}_${date}.json`;
 
 	const dataStr = JSON.stringify(bases, null, 2) // null, 2 = mise en forme indentée
 	const blob = new Blob([dataStr], {type: "application/json"});
