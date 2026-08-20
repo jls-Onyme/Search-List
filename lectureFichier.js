@@ -1,6 +1,13 @@
 /* lectureFichier.js */
 
 // ====================================================================== //
+/* ===== Variable Globale =============================================== */
+// ====================================================================== //
+
+let prefixeFichier = "";
+
+
+// ====================================================================== //
 /* =====  Fonction Charger le JSON via FileReader ======================= */
 // ====================================================================== //
 function lireJSON(fichier)
@@ -83,6 +90,8 @@ document.getElementById("chargerFile")
 	if (!fichier) return; //Pas de fichier -> on sort
 
 	const extension = fichier.name.split(`.`).pop().toLowerCase();
+
+	prefixeFichier = fichier.name.substring(0, 4);
 
 	if (extension === "json"){
 		lireJSON(fichier);
