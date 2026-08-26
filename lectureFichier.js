@@ -91,7 +91,7 @@ document.getElementById("chargerFile")
 
 	const extension = fichier.name.split(`.`).pop().toLowerCase();
 
-	prefixeFichier = fichier.name.substring(0, 7);
+	prefixeFichier = fichier.name.substring(1, 7);
 
 	if (extension === "json"){
 		lireJSON(fichier);
